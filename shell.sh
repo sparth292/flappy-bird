@@ -1,3 +1,3 @@
 git add .
-git commit -m "Commit Using Shell.sh"
+git commit -m "Bird Falling Animation"
 git push origin main
