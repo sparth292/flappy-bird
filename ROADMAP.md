@@ -6,7 +6,7 @@
 
 [Done] 6. Spacebar → bird jumps
 [Done] 7. Prevent bird from going above the screen
-[ ] 8. Add ground / game-over condition
+[Dpne] 8. Add ground / game-over condition
 
 [ ] 9. Create pipes
 [ ] 10. Move pipes
