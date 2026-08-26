@@ -1,3 +1,3 @@
 git add .
-git commit -m "Birds Flap (Walls) Implemented"
+git commit -m "Game Over Implemented"
 git push origin main

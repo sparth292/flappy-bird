@@ -14,6 +14,8 @@ import javax.swing.Timer;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JOptionPane;
+
 public class GamePanel extends JPanel implements KeyListener{
     private int birdX = 400;
     private double birdY = 300;
@@ -21,7 +23,7 @@ public class GamePanel extends JPanel implements KeyListener{
     private int birdHeight = 40;
     private double birdVelocity = 0;
     private double gravity = 0.5;
-
+    public boolean gameOver = false;
     // GamePanel Constructor
     public GamePanel(){
 
@@ -35,7 +37,17 @@ public class GamePanel extends JPanel implements KeyListener{
                 birdY += birdVelocity;
 
                 System.out.println("Panel Height: " + getHeight() + " Bird Y: " + birdY);
+                if (birdY + birdHeight >= getHeight()) {
+                    if (gameOver) {
+                        return;
+                    }
+                    birdY = getHeight() - birdHeight;
+                    birdVelocity = 0;
 
+                    
+
+                    showGameOver();
+                } // reaches ground
                 if (birdY + birdHeight >= getHeight()) {
                     birdY = getHeight() - birdHeight;
                     birdVelocity = 0;
@@ -75,4 +87,29 @@ public class GamePanel extends JPanel implements KeyListener{
     @Override
     public void keyTyped(KeyEvent arg0) {
     }
+    private void startNewGame() {
+        birdX = 400;
+        birdY = 300;
+        birdVelocity = 0;
+        gameOver = false;
+    }
+    private void showGameOver() {
+
+    int choice = JOptionPane.showOptionDialog(
+        this,
+        "Game Over!",
+        "Flappy Bird",
+        JOptionPane.DEFAULT_OPTION,
+        JOptionPane.INFORMATION_MESSAGE,
+        null,
+        new String[]{"Start New", "Exit"},
+        "Start New"
+    );
+
+    if (choice == 0) {
+        startNewGame();
+    } else {
+        System.exit(0);
+    }
+}
 }

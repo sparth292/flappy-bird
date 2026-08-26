@@ -5,7 +5,7 @@
 [Done] 5. Add gravity
 
 [Done] 6. Spacebar → bird jumps
-[ ] 7. Prevent bird from going above the screen
+[Done] 7. Prevent bird from going above the screen
 [ ] 8. Add ground / game-over condition
 
 [ ] 9. Create pipes
