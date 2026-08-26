@@ -9,7 +9,7 @@ public class App {
         JFrame gameWindow = new JFrame("Flappy Bird");
 
         GamePanel gamePanel = new GamePanel();
-
+        
         gameWindow.add(gamePanel);
         
         gameWindow.setSize(900,700);

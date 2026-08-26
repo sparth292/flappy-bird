@@ -1,3 +1,3 @@
 git add .
-git commit -m "Birds Flap (Spacebar Logic) Implemented"
+git commit -m "Birds Flap (Walls) Implemented"
 git push origin main

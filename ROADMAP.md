@@ -4,7 +4,7 @@
 [Done] 4. Create game loop
 [Done] 5. Add gravity
 
-[ ] 6. Spacebar → bird jumps
+[Done] 6. Spacebar → bird jumps
 [ ] 7. Prevent bird from going above the screen
 [ ] 8. Add ground / game-over condition
 

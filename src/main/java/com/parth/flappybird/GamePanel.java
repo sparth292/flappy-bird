@@ -3,6 +3,8 @@ package com.parth.flappybird;
 
 //import statements
 import javax.swing.JPanel;
+
+import java.awt.Color;
 import java.awt.Graphics;
 
 //Timer Import
@@ -14,29 +16,46 @@ import java.awt.event.KeyListener;
 
 public class GamePanel extends JPanel implements KeyListener{
     private int birdX = 400;
-    private int birdY = 300;
+    private double birdY = 300;
     private int birdWidth = 40;
-    private int birdHeight = 30;
+    private int birdHeight = 40;
     private double birdVelocity = 0;
     private double gravity = 0.5;
 
+    // GamePanel Constructor
     public GamePanel(){
 
         setFocusable(true);
         requestFocusInWindow();
         addKeyListener(this);
         Timer timer = new Timer(16 , e -> {
+                
+            
                 birdVelocity += gravity;
                 birdY += birdVelocity;
 
+                System.out.println("Panel Height: " + getHeight() + " Bird Y: " + birdY);
+
+                if (birdY + birdHeight >= getHeight()) {
+                    birdY = getHeight() - birdHeight;
+                    birdVelocity = 0;
+                }   
+                if (birdY <= 0) {
+                    birdY = 0;
+                    birdVelocity = 0;
+                }
                 repaint();
         });
         timer.start();
     }
+
+    // Bird's Rectangle
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawRect(birdX, birdY, birdWidth, birdHeight);    
+        g.setColor(Color.BLACK); 
+        g.drawRect(birdX, (int)birdY, birdWidth, birdHeight);
+          
     }    
 
     // Bird's Flap
@@ -46,14 +65,14 @@ public class GamePanel extends JPanel implements KeyListener{
             birdVelocity = -10;
         }
     }
+
+    //Random Kid
     @Override
     public void keyReleased(KeyEvent arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
+
+    //Random Kid
     @Override
     public void keyTyped(KeyEvent arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 }
