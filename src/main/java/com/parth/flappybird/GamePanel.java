@@ -23,51 +23,70 @@ public class GamePanel extends JPanel implements KeyListener{
     private int birdHeight = 40;
     private double birdVelocity = 0;
     private double gravity = 0.5;
+    private Pipe pipe;
+    private Pipe bottomPipe;
     public boolean gameOver = false;
+    
     // GamePanel Constructor
-    public GamePanel(){
+    public GamePanel() {
 
-        setFocusable(true);
-        requestFocusInWindow();
-        addKeyListener(this);
-        Timer timer = new Timer(16 , e -> {
-                
-            
-                birdVelocity += gravity;
-                birdY += birdVelocity;
+    setFocusable(true);
+    requestFocusInWindow();
+    addKeyListener(this);
 
-                System.out.println("Panel Height: " + getHeight() + " Bird Y: " + birdY);
-                if (birdY + birdHeight >= getHeight()) {
-                    if (gameOver) {
-                        return;
-                    }
-                    birdY = getHeight() - birdHeight;
-                    birdVelocity = 0;
+    pipe = new Pipe(700, 0, 200, 100);
+    bottomPipe = new Pipe(700, 450, 400, 100);
+    
+    Timer timer = new Timer(16, e -> {
 
-                    
+        if (gameOver) {
+            return;
+        }
 
-                    showGameOver();
-                } // reaches ground
-                if (birdY + birdHeight >= getHeight()) {
-                    birdY = getHeight() - birdHeight;
-                    birdVelocity = 0;
-                }   
-                if (birdY <= 0) {
-                    birdY = 0;
-                    birdVelocity = 0;
-                }
-                repaint();
-        });
-        timer.start();
-    }
+        birdVelocity += gravity;
+        birdY += birdVelocity;
+
+        pipe.x -= 5;
+        bottomPipe.x -= 5;
+        // Reached ground
+        if (birdY + birdHeight >= getHeight()) {
+
+            birdY = getHeight() - birdHeight;
+            birdVelocity = 0;
+
+            gameOver = true;
+
+            showGameOver();
+        }
+
+        // Reached ceiling
+        if (birdY <= 0) {
+            birdY = 0;
+            birdVelocity = 0;
+        }
+
+        repaint();
+    });
+
+    timer.start();
+}
 
     // Bird's Rectangle
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+        
+        //Bird's Color
         g.setColor(Color.BLACK); 
         g.drawRect(birdX, (int)birdY, birdWidth, birdHeight);
-          
+
+        //Pipe ka color
+        g.setColor(Color.GREEN);
+        g.fillRect(pipe.x, pipe.y, pipe.width, pipe.height);
+
+        //Bottom Pipe Color
+        g.setColor(Color.GREEN);
+        g.fillRect(bottomPipe.x, bottomPipe.y, bottomPipe.width, bottomPipe.height);  
     }    
 
     // Bird's Flap
