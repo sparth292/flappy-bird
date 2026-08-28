@@ -8,8 +8,8 @@
 [Done] 7. Prevent bird from going above the screen
 [Dpne] 8. Add ground / game-over condition
 
-[ ] 9. Create pipes
-[ ] 10. Move pipes
+[Done] 9. Create pipes
+[Done] 10. Move pipes
 [ ] 11. Generate pipe gaps
 [ ] 12. Collision detection
 
